@@ -8,11 +8,16 @@ import java.awt.*;
 public class Player extends GameObject {
     public int hp;
     public boolean immune;
-    private final float GRAVITY = 0.2f;
+    private final float GRAVITY = 0.4f;
+    private final float JUMPSPEED = 10f;
 
     public Player() {
+        this(100, 100);
+    }
+
+    public Player(int a, int b) {
         renderer = new Renderer("assets/images/players/straight");
-        position.set(100, 100);
+        position.set(a, b);
         hitBox = new BoxCollider(this, Settings.PLAYER_WIDTH - 12, Settings.PLAYER_HEIGHT - 8);
         immune = false;
     }
@@ -53,43 +58,43 @@ public class Player extends GameObject {
         int halfWidthPlayer = Settings.PLAYER_WIDTH / 2;
         int halfHeightPlayer = Settings.PLAYER_HEIGHT / 2;
         position.x = Mathx.clamp(position.x, halfWidthPlayer, Settings.BACKGROUND_WIDTH - halfWidthPlayer);
-        position.y = Mathx.clamp(position.y, halfHeightPlayer, Settings.GAME_HEIGHT - halfHeightPlayer);
+        position.y = Mathx.clamp(position.y, halfHeightPlayer, Settings.GAME_HEIGHT - halfHeightPlayer + 50);
     }
 
     private void move() {
         // player move
+        isTouchingGround = false;
+        keyMove();
         freeFall();
         moveVertical();
         moveLeft();
         moveRight();
-        moveUp();
-//        moveDown();
+        jump();
     }
 
+    private boolean isJumping ;
+    private boolean isTouchingGround;
+
+    private void freeFall() {
+        this.velocity.y += GRAVITY;
+    }
     private void moveLeft() {
-        if (KeyEventPress.isLeftPress) {
+        if (isLeft) {
             position.x -= 3;
         }
     }
     private void moveRight() {
-        if (KeyEventPress.isRightPress) {
+        if (isRight) {
             position.x += 3;
         }
     }
-    private void moveUp() {
-        if (KeyEventPress.isUpPress) {
-            position.y -= 10;
-            freeFall();
-        }
-    }
-    private void moveDown() {
-        if (KeyEventPress.isDownPress) {
-            position.y += 3;
-        }
-    }
 
-    private void freeFall() {
-        this.velocity.y += GRAVITY;
+    private void jump() {
+        if (isUp && isTouchingGround) {
+            isJumping = true;
+            velocity.y -= JUMPSPEED;
+        }
+        else isJumping = false;
     }
 
     private void moveVertical() {
@@ -105,12 +110,28 @@ public class Player extends GameObject {
         Platform platform = GameObject.findHitBoxIntersects(nextHitBox);
         if (platform != null) {
             while(!this.hitBox.intersects(platform.hitBox)) {
-                this.position.add(0, 1);
+                this.position.add(0, Math.signum(velocity.y));
             }
             Platform currentIntersects = GameObject.findIntersects(Platform.class, this);
-            if(!(currentIntersects != null && new Double(this.hitBox.bot()).intValue() > new Double(currentIntersects.hitBox.top()).intValue())) {
+//            if(!(currentIntersects != null && new Double(this.hitBox.bot()).intValue() > new Double(currentIntersects.hitBox.top()).intValue())) {
+//                velocity.y = 0;
+//                isTouchingGround = true;
+//            }
+            if(!(currentIntersects != null && (int) this.hitBox.bot() > (int) currentIntersects.hitBox.top() )) {
                 velocity.y = 0;
+                isTouchingGround = true;
             }
         }
+    }
+
+    public boolean isUp;
+    public boolean isDown;
+    public boolean isLeft;
+    public boolean isRight;
+    public void keyMove() {
+        isUp = KeyEventPress.isUpPress;
+        isDown = KeyEventPress.isDownPress;
+        isLeft = KeyEventPress.isLeftPress;
+        isRight = KeyEventPress.isRightPress;
     }
 }

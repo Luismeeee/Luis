@@ -33,6 +33,22 @@ public class Program {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     KeyEventPress.isFirePress = true;
                 }
+
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    KeyEventPress.isLeftPress2 = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    KeyEventPress.isUpPress2 = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    KeyEventPress.isRightPress2 = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    KeyEventPress.isDownPress2 = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_M) {
+                    KeyEventPress.isFirePress2 = true;
+                }
             }
 
             @Override
@@ -52,6 +68,22 @@ public class Program {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     KeyEventPress.isFirePress = false;
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    KeyEventPress.isLeftPress2 = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    KeyEventPress.isUpPress2 = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    KeyEventPress.isRightPress2 = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    KeyEventPress.isDownPress2 = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_M) {
+                    KeyEventPress.isFirePress2 = false;
                 }
             }
         });

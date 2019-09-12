@@ -2,18 +2,21 @@ package bases;
 
 import game.Platform;
 import game.Player;
+import game.Player2;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
     Player player;
+    Player2 player2;
     Background background;
     Platform platform;
 
     public GamePanel() {
         background = new Background();
-        player = new Player();
+        player = new Player(200, 100);
+        player2 = new Player2();
         for (int i = 0; i < 5; i++) {
             platform = new Platform(50 + 30*i, 402);
         }
