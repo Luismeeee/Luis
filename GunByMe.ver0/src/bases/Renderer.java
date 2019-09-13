@@ -58,7 +58,6 @@ public class Renderer {
                 frameCount = 0;
             }
         }
-
     }
 
     private void drawImage(Graphics g, BufferedImage image, GameObject master) {

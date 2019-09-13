@@ -12,4 +12,7 @@ public class Settings {
 
     public static int PLATFORM_WIDTH = 30;
     public static int PLATFORM_HEIGHT = 30;
+
+    public static int PLAYER_BULLET_WIDTH = 24;
+    public static int PLAYER_BULLET_HEIGHT = 24;
 }

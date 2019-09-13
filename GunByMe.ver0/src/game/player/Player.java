@@ -1,6 +1,8 @@
-package game;
+package game.player;
 
 import bases.*;
+import game.Platform;
+import game.playerBullet.PlayerBullet;
 import tklibs.Mathx;
 
 import java.awt.*;
@@ -22,12 +24,12 @@ public class Player extends GameObject {
         immune = false;
     }
 
-    int frameCount = 0;
     @Override
     public void run() {
         super.run();
         this.move();
         this.limitPosition();
+        this.fire();
         this.checkImmune();
     }
 
@@ -69,23 +71,36 @@ public class Player extends GameObject {
         moveVertical();
         moveLeft();
         moveRight();
+        moveDown();
         jump();
     }
 
     private boolean isJumping ;
     private boolean isTouchingGround;
+    private boolean isPressing;
+    private boolean isTurnLeft;
 
     private void freeFall() {
         this.velocity.y += GRAVITY;
     }
+
     private void moveLeft() {
         if (isLeft) {
             position.x -= 3;
+            isTurnLeft = true;
         }
     }
+
     private void moveRight() {
         if (isRight) {
             position.x += 3;
+            isTurnLeft = false;
+        }
+    }
+
+    private void moveDown() {
+        if (isDown && isTouchingGround) {
+            freeFall();
         }
     }
 
@@ -124,14 +139,49 @@ public class Player extends GameObject {
         }
     }
 
+    int frameCount = 0;
+
+    public void fire() {
+        // player fire
+        frameCount++;
+        int angleChange;
+        if (isTurnLeft) {
+            angleChange = -90;
+        }
+        else {
+            angleChange = 90;
+        }
+
+        if (isFire && frameCount > 10) {
+            int numberBullet = 2;
+
+            double startX = position.x - 10;
+            double endX = position.x + 10;
+            double stepX = (endX - startX) / (numberBullet - 1);
+
+            double startAngle = -90;
+            double endAngle = -90;
+            double stepAngle = (endAngle - startAngle) / (numberBullet - 1);
+
+            for (int i = 0; i < numberBullet; i++) {
+                PlayerBullet bullet = new PlayerBullet();
+                bullet.position.set(startX + (stepX * i),position.y);
+                bullet.velocity.setAngle(Math.toRadians(startAngle + (stepAngle * i) + angleChange));
+            }
+            frameCount = 0;
+        }
+    }
+
     public boolean isUp;
     public boolean isDown;
     public boolean isLeft;
     public boolean isRight;
+    public boolean isFire;
     public void keyMove() {
         isUp = KeyEventPress.isUpPress;
         isDown = KeyEventPress.isDownPress;
         isLeft = KeyEventPress.isLeftPress;
         isRight = KeyEventPress.isRightPress;
+        isFire = KeyEventPress.isFirePress;
     }
 }
