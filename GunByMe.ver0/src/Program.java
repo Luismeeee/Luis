@@ -17,13 +17,12 @@ public class Program {
         window.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_S){
+                if(e.getKeyCode() == KeyEvent.VK_X){
                     KeyEventPress.isSkey = true;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
                     KeyEventPress.ESCkey = true;
                 }
-                KeyEventPress.isSkey = true;
                 if (e.getKeyCode() == KeyEvent.VK_A) {
                     KeyEventPress.isLeftPress = true;
                 }
