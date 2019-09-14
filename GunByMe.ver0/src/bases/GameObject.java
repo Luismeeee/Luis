@@ -103,4 +103,8 @@ public class GameObject {
     public void reset() {
         active = true;
     }
+
+    public void knockBack(Vector2D velocityBullet) {
+        velocity.x += Math.signum(velocityBullet.x) * 10;
+    }
 }

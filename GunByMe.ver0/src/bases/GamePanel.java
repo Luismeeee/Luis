@@ -23,6 +23,9 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < 5; i++) {
             platform = new Platform(150 + 30*i, 500);
         }
+        for (int i = 0; i < 25; i++) {
+            platform = new Platform(300 + 30*i, 400);
+        }
     }
 
     @Override
@@ -32,8 +35,8 @@ public class GamePanel extends JPanel {
 
         GameObject.renderAll(g);
 
-        g.setColor(Color.BLACK);
-        g.fillRect(Settings.BACKGROUND_WIDTH,0,Settings.GAME_WIDTH - Settings.BACKGROUND_WIDTH,Settings.GAME_HEIGHT);
+//        g.setColor(Color.BLACK);
+//        g.fillRect(Settings.BACKGROUND_WIDTH,0,Settings.GAME_WIDTH - Settings.BACKGROUND_WIDTH,Settings.GAME_HEIGHT);
     }
 
     public void gameLoop() {

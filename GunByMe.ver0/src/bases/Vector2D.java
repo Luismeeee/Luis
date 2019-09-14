@@ -84,7 +84,5 @@ public class Vector2D {
 
     public static void main(String[] args) {
         Vector2D v1 = new Vector2D(1,1);
-
-
     }
 }

@@ -2,9 +2,10 @@ package bases;
 
 public class Background extends GameObject {
     public Background() {
-        renderer = new Renderer("assets/images/background/0.png");
-        position.set(0, Settings.GAME_HEIGHT-Settings.BACKGROUND_HEIGHT);
-        velocity.set(0, 1);
+        renderer = new Renderer("assets/images/background/rEtiNc.png");
+        position.set(0, 0);
+//        position.set(0, Settings.GAME_HEIGHT-Settings.BACKGROUND_HEIGHT);
+//        velocity.set(0, 1);
         anchor.set(0, 0);
     }
 

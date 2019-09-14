@@ -9,7 +9,7 @@ import game.player.Player01;
 public class PlayerBullet2 extends GameObject {
     public PlayerBullet2() {
         renderer = new Renderer("assets/images/player-bullets/a", 1);
-        velocity.set(0,-5);
+        velocity.set(0,-10);
         hitBox = new BoxCollider(this, Settings.PLAYER_BULLET_WIDTH - 8, Settings.PLAYER_BULLET_HEIGHT - 8);
     }
 

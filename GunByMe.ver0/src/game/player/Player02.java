@@ -103,7 +103,7 @@ public class Player02 extends GameObject {
         }
     }
 
-    private void jump() {
+    public void jump() {
         if (isUp && isTouchingGround) {
             isJumping = true;
             velocity.y -= JUMPSPEED;
