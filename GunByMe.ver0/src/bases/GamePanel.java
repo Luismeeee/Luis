@@ -1,5 +1,8 @@
 package bases;
 
+import Screen.PlayScreen;
+import Screen.SceneManager;
+import Screen.WelcomeScreen;
 import game.Platform;
 import game.player.Player01;
 import game.player.Player02;
@@ -13,19 +16,10 @@ public class GamePanel extends JPanel {
     Background background;
     Platform platform;
 
+
+
     public GamePanel() {
-        background = new Background();
-        player01 = new Player01();
-        player02 = new Player02();
-        for (int i = 0; i < 5; i++) {
-            platform = new Platform(50 + 30*i, 402);
-        }
-        for (int i = 0; i < 5; i++) {
-            platform = new Platform(150 + 30*i, 500);
-        }
-        for (int i = 0; i < 25; i++) {
-            platform = new Platform(300 + 30*i, 400);
-        }
+        SceneManager.signNewScreen(new WelcomeScreen());
     }
 
     @Override
@@ -35,8 +29,9 @@ public class GamePanel extends JPanel {
 
         GameObject.renderAll(g);
 
-//        g.setColor(Color.BLACK);
-//        g.fillRect(Settings.BACKGROUND_WIDTH,0,Settings.GAME_WIDTH - Settings.BACKGROUND_WIDTH,Settings.GAME_HEIGHT);
+        if (SceneManager.currentScreen instanceof PlayScreen){
+            g.setColor(Color.black);
+            g.fillRect(Settings.BACKGROUND_WIDTH,0, Settings.GAME_WIDTH - Settings.BACKGROUND_WIDTH,600);}
     }
 
     public void gameLoop() {

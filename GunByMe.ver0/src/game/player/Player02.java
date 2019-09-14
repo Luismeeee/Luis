@@ -1,5 +1,7 @@
 package game.player;
 
+import Screen.GameOverScreen;
+import Screen.SceneManager;
 import bases.*;
 import game.Platform;
 import game.playerBullet.PlayerBullet2;
@@ -178,5 +180,10 @@ public class Player02 extends GameObject {
         isLeft = KeyEventPress.isLeftPress2;
         isRight = KeyEventPress.isRightPress2;
         isFire = KeyEventPress.isFirePress2;
+    }
+    @Override
+    public void deactive() {
+        super.deactive();
+        SceneManager.signNewScreen(new GameOverScreen());
     }
 }

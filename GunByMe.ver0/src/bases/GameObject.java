@@ -40,6 +40,10 @@ public class GameObject {
         return null;
     }
 
+    public static void clear(){
+        listObjects.clear();
+    }
+
     // E ~ Player | Enemy | PlayerBullet ...
     // cls ~ Player.class | Enemy.class | PlayerBullet.class
     public static <E> E findIntersects(Class<E> cls, GameObject source) {
@@ -102,9 +106,5 @@ public class GameObject {
 
     public void reset() {
         active = true;
-    }
-
-    public void knockBack(Vector2D velocityBullet) {
-        velocity.x += Math.signum(velocityBullet.x) * 10;
     }
 }

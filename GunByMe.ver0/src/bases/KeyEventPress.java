@@ -15,4 +15,8 @@ public class KeyEventPress {
     public static boolean isRightPress2 = false;
     public static boolean isFirePress2 = false;
 
+    public static boolean isSkey = false;
+    public static boolean isEkey = false;
+    public static boolean ESCkey = false;
+
 }

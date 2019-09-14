@@ -17,7 +17,13 @@ public class Program {
         window.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                KeyEventPress.isAnyKeyPress = true;
+                if(e.getKeyCode() == KeyEvent.VK_S){
+                    KeyEventPress.isSkey = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+                    KeyEventPress.ESCkey = true;
+                }
+                KeyEventPress.isSkey = true;
                 if (e.getKeyCode() == KeyEvent.VK_A) {
                     KeyEventPress.isLeftPress = true;
                 }
@@ -53,7 +59,12 @@ public class Program {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                KeyEventPress.isAnyKeyPress = false;
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+                    KeyEventPress.ESCkey = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_X){
+                    KeyEventPress.isSkey  = false;
+                }
                 if (e.getKeyCode() == KeyEvent.VK_A) {
                     KeyEventPress.isLeftPress = false;
                 }
@@ -90,7 +101,7 @@ public class Program {
 
         GamePanel panel = new GamePanel();
         window.add(panel);
-        panel.setPreferredSize(new Dimension(Settings.GAME_WIDTH,Settings.GAME_HEIGHT)); // kich thuoc panel mong muon
+        panel.setPreferredSize(new Dimension(Settings.GAME_WIDTH, Settings.GAME_HEIGHT)); // kich thuoc panel mong muon
         window.pack(); // mo rong cua so cho vua panel
 
         window.setVisible(true);
