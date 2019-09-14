@@ -12,6 +12,7 @@ public class Player01 extends GameObject {
     public boolean immune;
     private final float GRAVITY = 0.4f;
     private final float JUMPSPEED = 10f;
+    public String name;
 
     public Player01() {
         this(100, 100);
