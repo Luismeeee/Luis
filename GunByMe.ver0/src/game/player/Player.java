@@ -184,4 +184,4 @@ public class Player extends GameObject {
         isRight = KeyEventPress.isRightPress;
         isFire = KeyEventPress.isFirePress;
     }
-}
+} abc
